@@ -10,7 +10,6 @@ What is the input to each recursive call?
   The number minus one.
 What is the output of each recursive call?
   The addition of the previous two positions.
-    
 */
 
 const fibonacci = (num) => {
@@ -23,7 +22,7 @@ const fibonacci = (num) => {
   return result;
 };
 
-console.log(fibonacci(4));
+console.log(fibonacci(7));
 
 /* Result:
   [1, 1, 2, 3, 5, 8, 13]
