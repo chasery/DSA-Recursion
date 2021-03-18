@@ -13,13 +13,15 @@ What is the output of each recursive call?
 */
 
 const fibonacci = (num) => {
-  if (num <= 2) {
-    return [1, 1].slice(0, num);
+  if (num === 1) {
+    return [1];
+  } else if (num === 2) {
+    return [1, 1];
+  } else {
+    const result = fibonacci(num - 1);
+    result.push(result[result.length - 2] + result[result.length - 1]);
+    return result;
   }
-  const result = fibonacci(num - 1);
-
-  result.push(result[result.length - 1] + result[result.length - 2]);
-  return result;
 };
 
 console.log(fibonacci(7));
