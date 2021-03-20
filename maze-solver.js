@@ -9,28 +9,63 @@ For the above maze, a possible exit path can be RRDDLLDDRRRRRR
 What is the input to the program?
   A maze.
 What is the output of the program?
-  The path to get out of the maze at 'e.'
+  The directions of a path to get out at 'e.'
 What is the input to each recursive call?
-  The maze, the row index representing the current row of the maze, and the index in the row we left off at.
+  The maze, row, column, and lastMove
 What is the output of each recursive call?
-  A 'R' or 'D' based on whether we can go right or need to go down.
+  A direction to take.
 */
 
-const mazeSolver = (maze, row, index) => {
+const availableMoves = (maze, row, column, lastMove) => {
+  const moves = [];
+  // Check if coordinates stay within bounds of the maze and whether or not it has a wall
+  if (row - 1 >= 0 && maze[row - 1][column] !== '*' && lastMove !== 'D') {
+    moves.push('U');
+  }
+  if (
+    column + 1 < maze[row].length &&
+    maze[row][column + 1] !== '*' &&
+    lastMove !== 'L'
+  ) {
+    moves.push('R');
+  }
+  if (
+    row + 1 < maze.length &&
+    maze[row + 1][column] !== '*' &&
+    lastMove !== 'U'
+  ) {
+    moves.push('D');
+  }
+  if (column - 1 >= 0 && maze[row][column - 1] !== '*' && lastMove !== 'R') {
+    moves.push('L');
+  }
+  return moves;
+};
+
+const mazeSolver = (maze, row, column, lastMove) => {
   row = row || 0;
-  index = index || 0;
+  column = column || 0;
+  // Returns an array of available moves
+  const moves = availableMoves(maze, row, column, lastMove);
   // Base case
-  if (maze[row][index] === 'e') {
+  if (maze[row][column] === 'e') {
     return '';
   } else {
     // General case
-    // Check to see if the next index will contain an * or if we're at the edge of the maze.
-    if (maze[row][index + 1] === '*' || index === maze[row].length - 1) {
-      // Return 'D' and pass in a current row and index argument as we need to go to the next row and start from that position.
-      return 'D' + mazeSolver(maze, row + 1, index);
+    for (const move of moves) {
+      if (move === 'U') {
+        return move + mazeSolver(maze, row - 1, column, move);
+      }
+      if (move === 'R') {
+        return move + mazeSolver(maze, row, column + 1, move);
+      }
+      if (move === 'D') {
+        return move + mazeSolver(maze, row + 1, column, move);
+      }
+      if (move === 'L') {
+        return move + mazeSolver(maze, row, column - 1, move);
+      }
     }
-    // Return 'R' as we can freely move to the right.
-    return 'R' + mazeSolver(maze, row, index + 1);
   }
 };
 
@@ -51,5 +86,5 @@ let maze = [
 console.log(mazeSolver(maze));
 
 /* Result:
-  RRDDRRRRDD
+  RRDDRRUURRDDDD
 */
