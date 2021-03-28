@@ -17,6 +17,8 @@
       The number of sheep -1.
     What is the output of each recursive call?
       A string output of 'Another sheep jumps over the fence' if count !== 0 and 'All sheep jumped over the fence' if count === 0
+
+    Linear time O(n)
 */
 
 const countSheep = (count) => {
@@ -59,6 +61,8 @@ All sheep jumped over the fence
       The base number and the power -1.
     What is the output of each recursive call?
       The base number multiplied by the base number.
+
+    Linear time O(n)
 */
 
 const powerCalculator = (base, exponent) => {
@@ -91,6 +95,8 @@ powerCalculator(10, 4);
       A string of characters excluding the first one.
     What is the output of each recursive call?
       The recursive call for the string minus the first character of the string and then the first character.
+
+    Linear time O(n)
 */
 
 const reverseString = (string) => {
@@ -119,6 +125,8 @@ reverseString('Hello, world!');
       The number minus one.
     What is the output of each recursive call?
       The number of dots that row needs.
+
+    Linear time O(n)
 */
 
 const triangularNumber = (num) => {
@@ -151,6 +159,8 @@ triangularNumber(9);
       The shortened string.
     What is the output of each recursive call?
       The string before the next separtor.
+
+    Linear time O(n)
 */
 
 const stringSplitter = (str, sep, result) => {
@@ -184,6 +194,8 @@ stringSplitter('02/20/2020', '/');
       The number minus one.
     What is the output of each recursive call?
       The addition of the previous two positions.
+
+    Linear time O(n)
 */
 
 const fibonacci = (num) => {
@@ -215,6 +227,8 @@ fibonacci(7);
       The number - 1.
     What is the output of each recursive call?
       The number multiplied by the previous number.
+
+    Linear time O(n)
 */
 
 const factorial = (num) => {
